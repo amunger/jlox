@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "AstPrinterRpn",
+            "request": "launch",
+            "mainClass": "com.craftinginterpreters.lox.AstPrinterRpn",
+            "projectName": "jlox_7e33d69e"
+        },
+        {
+            "type": "java",
+            "name": "AstPrinter",
+            "request": "launch",
+            "mainClass": "com.craftinginterpreters.lox.AstPrinter",
+            "projectName": "jlox_7e33d69e"
+        },
+        {
+            "type": "java",
+            "name": "debug prompt",
+            "request": "launch",
+            "mainClass": "com.craftinginterpreters.lox.Lox",
+            "projectName": "jlox_7e33d69e"
+        },
+        {
+            "type": "java",
+            "name": "debug file",
+            "request": "launch",
+            "mainClass": "com.craftinginterpreters.lox.Lox",
+            "projectName": "jlox_7e33d69e",
+            "args": [
+                "./inputFile.lox"
+            ]
+        }
+    ]
+}
