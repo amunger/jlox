@@ -60,13 +60,17 @@ def defineType(file, baseName, className, fieldList):
     file.write("  }\n\n")
 
 defineAst("Expr", [
+    "Assign   : Token name, Expr value",
     "Binary   : Expr left, Token operator, Expr right",
     "Grouping : Expr expression",
     "Literal  : Object value",
     "Unary    : Token operator, Expr right",
+    "Variable : Token name",
 ])
 
 defineAst("Stmt", [
+    "Block    : List<Stmt> statements",
     "Expression : Expr expression",
+    "Var        : Token name, Expr initializer",
     "Print      : Expr expression",
 ])
