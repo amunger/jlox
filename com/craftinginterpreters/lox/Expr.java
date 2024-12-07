@@ -11,6 +11,8 @@ abstract class Expr {
     R visitCallExpr(Call expr);
     R visitGetExpr(Get expr);
     R visitGroupingExpr(Grouping expr);
+    R visitIndexExpr(Index expr);
+    R visitArrayExpr(Array expr);
     R visitLiteralExpr(Literal expr);
     R visitLogicalExpr(Logical expr);
     R visitSetExpr(Set expr);
@@ -89,6 +91,34 @@ abstract class Expr {
 
     @Override <R> R accept(Visitor<R> visitor) {
       return visitor.visitGroupingExpr(this);
+    }
+  }
+
+  static class Index extends Expr {
+    final Expr variable;
+    final Token index;
+
+    Index(Expr variable, Token index) {
+      this.variable = variable;
+      this.index = index;
+    }
+
+    @Override <R> R accept(Visitor<R> visitor) {
+      return visitor.visitIndexExpr(this);
+    }
+  }
+
+  static class Array extends Expr {
+    final Token bracket;
+    final List<Expr> elements;
+
+    Array(Token bracket, List<Expr> elements) {
+      this.bracket = bracket;
+      this.elements = elements;
+    }
+
+    @Override <R> R accept(Visitor<R> visitor) {
+      return visitor.visitArrayExpr(this);
     }
   }
 

@@ -1,15 +1,12 @@
-class Doer {
-    init(p1) {
-        this.prop1 = p1;
-    }
+var array = [1,2,3];
 
-    method1(value) {
-        print "value is ";
-        print value;
-        print "prop1 is ";
-        print this.prop1;
-    }
-}
+print array[1];
 
-var d = Doer("hello");
-d.method1("goodbye");
+print array;
+
+print "length:";
+print array.length();
+
+var a = 1;
+
+print a;
