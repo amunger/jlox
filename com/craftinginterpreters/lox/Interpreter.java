@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 import com.craftinginterpreters.lox.Expr.Call;
+import com.craftinginterpreters.lox.Expr.Index;
 
 public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
@@ -167,6 +168,15 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
         }
 
         return object.toString();
+    }
+
+    @Override
+    public Object visitArrayExpr(Expr.Array expr) {
+        ArrayList<Object> elements = new ArrayList<>();
+        for (Expr element : expr.elements) {
+            elements.add(evaluate(element));
+        }
+        return new LoxArray(elements);
     }
 
     @Override
@@ -357,6 +367,19 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
         }
 
         return null;
+    }
+
+    @Override
+    public Object visitIndexExpr(Index expr) {
+        Object arrayVar = evaluate(expr.variable);
+
+        if (!(arrayVar instanceof LoxArray)) {
+            throw new RuntimeError(expr.index, "Can only index into arrays");
+        }
+
+        double doubleIndex = ((double)expr.index.literal);
+        int index = (int) doubleIndex;
+        return ((LoxArray) arrayVar).getItem(index);
     }
 
     @Override
